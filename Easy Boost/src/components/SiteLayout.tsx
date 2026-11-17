@@ -15,6 +15,8 @@ export function SiteLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const showBackButton = location.pathname !== "/" && location.pathname !== "/sobre";
+
   return (
     <div className="site-shell">
       <header className="site-header">
@@ -53,7 +55,7 @@ export function SiteLayout() {
         </div>
       </header>
 
-      {location.pathname !== "/" && (
+      {showBackButton && (
         <button className="back-button" type="button" onClick={() => navigate(-1)}>
           <span aria-hidden="true">←</span> Voltar
         </button>
