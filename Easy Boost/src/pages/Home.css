@@ -1,0 +1,220 @@
+
+
+.home-intro {
+  display: grid;
+  align-items: center;
+  gap: 40px;
+  padding-block: 48px 80px;
+}
+.home-title {
+  max-width: 620px;
+}
+.home-lead {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #c5c5c5;
+}
+.home-intro-details {
+  max-width: 525px;
+  margin-top: 24px;
+}
+.home-cta {
+  margin-top: 28px;
+  text-align: center;
+}
+
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--green);
+  border-radius: 16px;
+}
+.metric {
+  padding: 20px 8px;
+  text-align: center;
+}
+.metric + .metric {
+  border-left: 1px solid rgb(161 255 54 / 0.4);
+}
+.metric h2 {
+  font-size: 10px;
+}
+.metric-value {
+  margin-top: 8px;
+  font-family: "Lexend:SemiBold", sans-serif;
+  font-size: 24px;
+  color: var(--green);
+}
+.metric-text {
+  margin-top: 12px;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #d2d2d2;
+}
+
+
+.performance {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid var(--purple);
+  border-radius: 16px;
+}
+.performance h2 {
+  font-size: 14px;
+}
+.performance-row {
+  margin-top: 16px;
+  color: #bcbcbc;
+}
+.performance-row.is-highlight .performance-label span:first-child {
+  color: var(--green);
+}
+.performance-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+.performance-bar {
+  height: 8px;
+  margin-top: 8px;
+  border: 1px dashed #666;
+  border-radius: 999px;
+}
+.performance-note {
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #aaa;
+}
+
+/* Nossos serviços */
+.home-services {
+  padding-block: 48px;
+}
+.home-services-grid {
+  display: grid;
+  gap: 40px;
+  margin-top: 40px;
+}
+.home-service {
+  text-align: center;
+}
+.home-service-media {
+  position: relative;
+}
+.home-service-name {
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  right: 16px;
+  padding: 8px;
+  border-radius: 4px;
+  background: rgb(217 217 217 / 0.95);
+  color: #111;
+  font-size: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.home-service .button {
+  margin-top: 24px;
+}
+
+/* Nossos parceiros */
+.home-partners {
+  padding-block: 64px;
+}
+.home-partners .gallery {
+  margin-top: 48px;
+}
+.partner-card {
+  position: relative;
+  padding: 16px 32px 16px 0;
+}
+.partner-card-backdrop {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  bottom: 40px;
+  width: 75%;
+  border-radius: var(--radius);
+  background: #d9d9d9;
+}
+.partner-card .image-slot {
+  width: 80%;
+}
+.partner-card .placeholder {
+  background: #a6a6a6; 
+}
+
+
+.home-about {
+  display: grid;
+  gap: 48px;
+  padding-block: 40px 96px;
+}
+.home-about-card {
+  text-align: center;
+}
+.home-about-card h2 {
+  font-size: clamp(24px, 3vw, 30px);
+  text-transform: uppercase;
+}
+.home-about-card p {
+  max-width: 420px;
+  margin: 20px auto 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d2d2d2;
+}
+.home-about-card .button {
+  margin-top: 28px;
+}
+.home-about-card + .home-about-card {
+  padding-top: 48px;
+  border-top: 1px solid #555;
+}
+
+@media (min-width: 640px) {
+  .metric h2 {
+    font-size: 14px;
+  }
+  .metric-value {
+    font-size: 36px;
+  }
+  .metric-text {
+    font-size: 12px;
+  }
+}
+@media (min-width: 768px) {
+  .home-services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .home-about {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .home-about-card:first-child {
+    padding-right: 48px;
+  }
+  .home-about-card + .home-about-card {
+    padding: 0 0 0 48px;
+    border-top: 0;
+    border-left: 1px solid #555;
+  }
+}
+@media (min-width: 1024px) {
+  .home-intro {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    padding-block: 56px 112px;
+  }
+  .home-partners {
+    padding-block: 80px;
+  }
+  .home-about {
+    padding-block: 64px 128px;
+  }
+}
