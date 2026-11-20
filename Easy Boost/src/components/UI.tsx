@@ -30,6 +30,20 @@ export function Placeholder({ label }: { label?: string }) {
   return <div className="placeholder">{label && <span>{label}</span>}</div>;
 }
 
+export type Feedback = { kind: "success" | "error"; text: string };
+
+/** Mensagem de confirmação ou erro de um formulário. A área fica sempre no DOM para os leitores de tela avisarem a mudança. */
+export function FormFeedback({ feedback }: { feedback: Feedback | null }) {
+  const isError = feedback?.kind === "error";
+  return (
+    <div aria-live={isError ? "assertive" : "polite"}>
+      {feedback && (
+        <p className={isError ? "form-feedback is-error" : "form-feedback"}>{feedback.text}</p>
+      )}
+    </div>
+  );
+}
+
 export type Service = {
   name: string;
   price: string;
@@ -112,3 +126,50 @@ export const services: Service[] = [
     ],
   },
 ];
+
+const currency = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+
+/** Formata centavos em reais. O Figma usa "R$139,00" nos totais e "R$ 139,00" no preço do item. */
+export function formatCurrency(cents: number, spaced = false): string {
+  const text = currency.format(cents / 100);
+  return spaced ? text : text.replace(/\s/g, "");
+}
+
+export function sumItems(items: { quantity: number; unitPriceCents: number }[]): number {
+  return items.reduce((sum, item) => sum + item.quantity * item.unitPriceCents, 0);
+}
+
+/*
+ * Persistência provisória das telas Minha Conta e Carrinho (funciona só no navegador).
+ * Com backend, as páginas deixam de usar estas funções e passam a chamar a API.
+ */
+const STORAGE_PREFIX = "easyboost:demo:";
+
+export function readStored<T>(key: string, fallback: T): T {
+  try {
+    const raw = window.localStorage.getItem(STORAGE_PREFIX + key);
+    return raw === null ? fallback : (JSON.parse(raw) as T);
+  } catch {
+    // Armazenamento bloqueado ou conteúdo corrompido: volta para os dados iniciais.
+    return fallback;
+  }
+}
+
+export function writeStored(key: string, value: unknown): void {
+  try {
+    window.localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
+  } catch {
+    // Armazenamento cheio ou bloqueado: os dados valem só até recarregar a página.
+  }
+}
+
+/** Apaga tudo o que as telas gravaram. */
+export function clearStored(): void {
+  try {
+    Object.keys(window.localStorage)
+      .filter((key) => key.startsWith(STORAGE_PREFIX))
+      .forEach((key) => window.localStorage.removeItem(key));
+  } catch {
+    // Armazenamento bloqueado: não há o que apagar.
+  }
+}

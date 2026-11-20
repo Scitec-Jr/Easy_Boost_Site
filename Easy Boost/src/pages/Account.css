@@ -1,0 +1,277 @@
+
+.account-page {
+  width: min(1040px, calc(100% - 48px));
+  margin-inline: auto;
+  padding-block: 123px 240px;
+}
+
+.account-page .section-heading {
+  margin-bottom: 75px;
+  padding-left: 44px;
+}
+
+.account-page .button {
+  min-width: 0;
+  border-radius: 999px;
+  padding-inline: 24px;
+}
+
+.account-panel {
+  padding: 64px 84px 55px;
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+
+.account-panel + .account-panel {
+  margin-top: 45px;
+}
+
+.account-panel h2 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.account-panel header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 46px;
+}
+
+.account-panel header .button {
+  min-height: 40px;
+}
+
+/* Dados pessoais (os campos ficam em components/ContactFields.css) */
+.account-header-actions {
+  display: flex;
+  gap: 12px;
+}
+.account-actions {
+  display: flex;
+  gap: 24px;
+  margin-top: 41px;
+  padding-top: 42px;
+  border-top: 2px solid #3e3e3e;
+}
+.purchase-history {
+  padding: 64px 62px 38px;
+}
+
+.purchase-history h2 {
+  margin: 4px 0 62px 30px;
+}
+
+.purchase {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 20px 28px 9px;
+  background: var(--surface-soft);
+  border-radius: 4px;
+}
+
+.purchase + .purchase {
+  margin-top: 24px;
+}
+
+.purchase-thumbs {
+  display: flex;
+  gap: 20px;
+}
+
+.purchase-media {
+  min-width: 0;
+}
+.purchase-thumbs .placeholder {
+  flex: 0 1 120px;
+  width: 120px;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1;
+}
+
+.purchase-more {
+  margin-top: 6px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-size: 12px;
+  color: #d2d2d2;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.purchase-info,
+.purchase-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+}
+
+.purchase-info small {
+  font-size: 13px;
+}
+
+.purchase-info strong {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.purchase-side {
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.purchase-status {
+  font-size: 13px;
+}
+
+.purchase-status.is-done {
+  color: var(--green);
+}
+
+.purchase-empty {
+  padding: 24px 30px;
+  font-size: 14px;
+  color: #d2d2d2;
+}
+.purchase-rating {
+  font-size: 13px;
+  color: var(--green);
+}
+
+.order-meta,
+.order-totals {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+.order-meta div,
+.order-totals div,
+.order-items li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.order-meta dt,
+.order-totals dt {
+  color: #d2d2d2;
+}
+.order-items {
+  margin: 20px 0;
+  padding: 16px 0;
+  border-block: 1px solid var(--surface-soft);
+  display: grid;
+  gap: 10px;
+  font-size: 14px;
+  list-style: none;
+}
+.order-totals .is-total {
+  margin-top: 4px;
+  font-family: "Lexend:SemiBold", sans-serif;
+  font-size: 18px;
+  color: var(--green);
+}
+.rating {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+}
+.rating legend {
+  margin-bottom: 16px;
+  color: #d2d2d2;
+}
+.rating div {
+  display: flex;
+  gap: 12px;
+}
+.rating label {
+  position: relative;
+  cursor: pointer;
+}
+.rating input {
+  position: absolute;
+  opacity: 0;
+}
+.rating span {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--surface-soft);
+  border-radius: 999px;
+}
+.rating input:checked + span {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--ink);
+}
+.rating input:focus-visible + span {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+.account-page .purchase-all {
+  display: flex;
+  min-width: 142px;
+  margin: 42px auto 0;
+}
+
+@media (max-width: 1000px) {
+  .account-panel,
+  .purchase-history {
+    padding-inline: 32px;
+  }
+
+  .purchase-history h2 {
+    margin-left: 0;
+  }
+
+  .purchase {
+    flex-wrap: wrap;
+    gap: 20px 32px;
+  }
+
+  .purchase-media {
+    flex-basis: 100%;
+  }
+
+  .purchase-info,
+  .purchase-side {
+    min-height: 0;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .account-page {
+    padding-block: 48px 72px;
+  }
+
+  .account-page .section-heading {
+    padding-left: 0;
+    margin-bottom: 40px;
+  }
+
+  .account-panel,
+  .purchase-history {
+    padding: 32px 20px;
+  }
+
+  .account-panel header {
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .purchase {
+    padding-inline: 16px;
+  }
+
+  .purchase-side {
+    margin-left: 0;
+    align-items: flex-start;
+  }
+}
