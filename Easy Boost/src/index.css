@@ -32,6 +32,7 @@
   --surface-soft: #3f3f3f;
   --ink: #0a0a0a;
   --radius: 8px;
+  --red: #ff2e2e;
 }
 
 @layer base {
@@ -262,6 +263,20 @@ main {
   background: transparent;
   border: 1px solid var(--green);
 }
+.button-red {
+  background: var(--red);
+  color: white;
+}
+.button-red-outline {
+  color: white;
+  background: transparent;
+  border: 1px solid var(--red);
+}
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: none;
+}
 .wide {
   width: 100%;
 }
@@ -367,4 +382,20 @@ main {
 }
 .highlight-purple {
   color: #b150ff;
+}
+.form-feedback {
+  margin-bottom: 24px;
+  padding: 10px 14px;
+  border: 1px solid var(--green);
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--green);
+}
+.form-feedback.is-error {
+  border-color: var(--red);
+  color: var(--red);
+}
+.field-error {
+  font-size: 13px;
+  color: var(--red);
 }

@@ -1,0 +1,47 @@
+
+.contact-fields {
+  display: grid;
+  gap: 20px;
+}
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  max-width: 589px;
+  font-size: 16px;
+}
+.contact-field-short {
+  max-width: 272px;
+}
+.contact-field input {
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  border-radius: 4px;
+  background: var(--surface-soft);
+  font-size: 14px;
+  color: #fefffc;
+}
+.contact-field input::placeholder {
+  color: #a7a3a3;
+  opacity: 1;
+}
+.contact-field input[aria-invalid="true"] {
+  box-shadow: inset 0 0 0 1px var(--red);
+}
+.contact-input {
+  position: relative;
+  display: block;
+}
+.contact-input img {
+  position: absolute;
+  top: 50%;
+  left: 22px;
+  width: 28px;
+  height: 28px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.contact-input input {
+  padding-left: 76px;
+}

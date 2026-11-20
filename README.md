@@ -42,8 +42,10 @@ Easy Boost/
 │   │   ├── App.tsx       Componente raiz
 │   │   └── routes.tsx    Definição das rotas
 │   ├── components/
-│   │   ├── SiteLayout.tsx  Header, Footer, botão Voltar e Outlet das páginas
-│   │   └── UI.tsx          Componentes reutilizáveis e dados de serviços
+│   │   ├── SiteLayout.tsx    Header, Footer, botão Voltar e Outlet das páginas
+│   │   ├── UI.tsx            Componentes reutilizáveis, dados de serviços e helpers de preço e persistência
+│   │   ├── Modal.tsx         Janela de diálogo e janela de confirmação
+│   │   └── ContactFields.tsx Campos Nome, Telefone e Email, com validação e perfil salvo
 │   ├── pages/            Uma página por rota
 │   ├── index.css         Estilos globais e de cada página
 │   └── main.tsx          Ponto de entrada
@@ -72,21 +74,40 @@ Para adicionar uma página, crie o componente em `src/pages/`, registre a rota e
 - `ActionLink`: botão em forma de link, nas variantes `green`, `purple` e `outline`.
 - `Placeholder`: bloco cinza para imagens que ainda não existem.
 - `ServiceCard` e `services`: card de serviço e a lista de exemplo. Hoje a página de serviços não os usa.
+- `FormFeedback`: mensagem de sucesso ou erro de um formulário.
+- `Modal` e `ConfirmDialog` (`Modal.tsx`): janelas de diálogo baseadas no `<dialog>` nativo.
+- `ContactFields` (`ContactFields.tsx`): campos Nome, Telefone e Email, usados em Minha Conta e nos Dados de Contato do carrinho.
+
+## Dados simulados e lógica provisória
+
+Minha Conta e Carrinho funcionam sem backend. Cada página guarda os tipos, os dados simulados e as funções de dados num bloco marcado no topo do próprio arquivo, como a `HomePage` faz com `metrics` e `homeImages`.
+
+| Onde                               | O que tem                                                                              |
+| ---------------------------------- | -------------------------------------------------------------------------------------- |
+| `pages/AccountPage.tsx` (topo)     | Pedidos simulados e as funções de pedidos, reembolso, avaliação, sair e deletar conta. |
+| `pages/CartPage.tsx` (topo)        | Carrinho e cupons simulados, cálculos de total e quantidade, e finalização demonstrativa. |
+| `components/ContactFields.tsx`     | Tipos, validação e máscara do contato, e o perfil simulado (`getProfile`, `saveProfile`). |
+| `components/UI.tsx`                | `formatCurrency`, `sumItems` e a persistência no `localStorage` (`readStored`, `writeStored`, `clearStored`). |
+
+Para integrar com um backend, troque o corpo das funções `async` desses blocos por chamadas à API, mantendo as assinaturas, e apague os dados simulados (`mockOrders`, `mockCart`, `demoCoupons`, `mockProfile`). Os cálculos e as validações continuam valendo.
+
+Para voltar aos dados iniciais, use "Deletar Conta" em Minha Conta ou limpe as chaves `easyboost:demo:*` do `localStorage`.
 
 ## Estilo
 
-- Cores e raio de borda estão como variáveis no início de `src/index.css` (`--green`, `--purple`, `--surface`, `--radius`).
+- Cores e raio de borda estão como variáveis no início de `src/index.css` (`--green`, `--purple`, `--red`, `--surface`, `--radius`).
 - A fonte é a Lexend.
 - Títulos de página são verdes e alinhados à esquerda.
 
 ## Estado atual
 
-Esta é a estrutura inicial. A navegação, o Header, o Footer, Minha Conta e o carrinho estão montados, mas o conteúdo das páginas ainda precisa ser desenvolvido.
+Esta é a estrutura inicial. A navegação, o Header, o Footer, Minha Conta e o carrinho estão montados e funcionam com dados simulados, mas o conteúdo das demais páginas ainda precisa ser desenvolvido.
 
 Pendências conhecidas:
 
 - Conteúdo de Sobre nós, Parceiros e Nossos serviços.
-- Minha Conta e Carrinho são telas estáticas. Os botões (Salvar, Sair, Deletar Conta, Remover, quantidade e cupom) ainda não têm ação.
+- Minha Conta e Carrinho funcionam só no navegador, com dados simulados. Não há login, backend, pagamento nem reembolso reais.
+- Não existe um caminho para adicionar serviços ao carrinho: a página de serviços ainda não tem conteúdo.
 - O formulário de Contato não envia a mensagem.
 - Os ícones de redes sociais do rodapé apontam para âncoras vazias e precisam dos links reais.
 - Os preços e textos dos serviços em `UI.tsx` são de exemplo e não foram confirmados.
